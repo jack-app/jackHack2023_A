@@ -1,15 +1,17 @@
 <template>
-    <HelloWorld/>
+    <div class = "container">
+        <div class = "main">
+            test 
+        </div>
+    </div>
 </template>
   
 <script>
-import HelloWorld from '../components/HelloWorld';
 
 export default {
 name: 'AboutPage',
 
 components: {
-    HelloWorld,
 },
 
 data: () => ({
@@ -17,4 +19,20 @@ data: () => ({
 }),
 };
 </script>
-  
+<style>
+.container {
+  /* border: 2px solid #1b0303;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; */
+
+}
+
+.main {
+  background-color: #f53838;
+
+}
+</style>
