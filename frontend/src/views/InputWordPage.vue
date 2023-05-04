@@ -20,14 +20,16 @@
 </template>
   
 <script>
-
+import io from "socket.io-client";
 export default {
+    
     name: 'InputWordPage',
     components: {
         
     },
     data() {
         return{
+            socket: io("localhost:3000/api/"),
             theme: "",
             message: ""
         }
@@ -37,9 +39,12 @@ export default {
     },
     methods: {
       submitTheme: function () {
-        // this.messageをバックエンドに送信する
-        console.log(this.message)
+        const word = this.message;
+        const room_id = localStorage.getItem('room_id');
+        this.socket.emit("input_word",word, room_id);
+        this.$router.push({ path: '/standby', query: { tag: "inputword" }});
       },
+        
     },
 }
 </script>
