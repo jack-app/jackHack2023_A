@@ -7,7 +7,9 @@
         <v-app-bar-title
         color = "white"
         >
-            {{ message }}
+            <div class = "title-header">
+                {{ title }}
+            </div>
         </v-app-bar-title>
         <div class = "label-header"></div>
     </v-app-bar>
@@ -16,6 +18,7 @@
 <script>
 export default {
     name: 'HeaderItem',
+    props:["title"],
     data() {
         return{
             message: "hoge"
@@ -34,5 +37,9 @@ export default {
     height: 30%;
     background: #FCDCCA;
     transform: rotate(-90deg);
+}
+.title-header{
+    color: #ffffff;
+    font-size: 30px;
 }
 </style>
