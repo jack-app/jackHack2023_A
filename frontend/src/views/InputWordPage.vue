@@ -45,7 +45,6 @@ export default {
 </script>
 <style>
 
-
 .container-input {
     margin-top: 30px;
     margin-left: 20px;
