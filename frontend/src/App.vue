@@ -1,27 +1,20 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      
-    </v-app-bar>
-
+  <v-app id = "app">
+    <HeaderItem/>
     <v-main>
-      <HelloWorld/>
+      <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import HeaderItem from './components/Header';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    HeaderItem,
   },
 
   data: () => ({
@@ -29,3 +22,14 @@ export default {
   }),
 };
 </script>
+<style>
+
+template{margin:0px;}
+@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
+#app {
+  font-family: 'Yomogi', cursive;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+</style>
