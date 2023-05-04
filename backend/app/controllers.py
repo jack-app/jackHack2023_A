@@ -36,11 +36,12 @@ from starlette.websockets import WebSocket
 
 # setup fastapi
 app_fastapi = FastAPI()
-sio = socketio.AsyncServer(async_mode='asgi')
+# sio = socketio.Server(cors_allowed_origins='*')
+sio = socketio.AsyncServer(async_mode='asgi', cors_allowed_origins='*')
 # sio.register_namespace(MyCustomNamespace('/socket.io'))  # 名前空間を設定
-# app_socketio = socketio.ASGIApp(sio, other_asgi_app=app_fastapi)  # wsgiサーバーミドルウェア生成
-app_socketio = socketio.WSGIApp(sio)  # wsgiサーバーミドルウェア生成
-eventlet.wsgi.server(eventlet.listen(('localhost', 3000)), app_socketio)  # wsgiサーバー起動
+app_socketio = socketio.ASGIApp(sio, other_asgi_app=app_fastapi)  # wsgiサーバーミドルウェア生成
+# app_socketio = socketio.WSGIApp(sio)  # wsgiサーバーミドルウェア生成
+# eventlet.wsgi.server(eventlet.listen(('localhost', 3000)), app_socketio)  # wsgiサーバー起動
 
 
 origins = [
@@ -88,23 +89,24 @@ async def ping(sid: str):
 stand_by_player = []
 
 
-@sio.on("start")
-async def start(sid, player_id):
-    stand_by_player.append([player_id, sid])
-    print("現在の待機プレイヤー：" + len(stand_by_player) + "名")
+@sio.event
+async def start(sid):
+    print("hoge")
+    # stand_by_player.append([player_id, sid])
+    # print("現在の待機プレイヤー：" + len(stand_by_player) + "名")
 
-    def join_room(players):
-        # 長さ10のランダムなアルファベットと数字の組み合わせを生成する
-        room_id = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
-        print(room_id)
-        for player in players:
-            sio.enter_room(sid=player[1], room=room_id)
+    # def join_room(players):
+    #     # 長さ10のランダムなアルファベットと数字の組み合わせを生成する
+    #     room_id = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+    #     print(room_id)
+    #     for player in players:
+    #         sio.enter_room(sid=player[1], room=room_id)
 
-        sio.emit("room-full", room=room_id)
+    #     sio.emit("room-full", room=room_id)
 
-    if len(stand_by_player) >= 5:
-        join_room(stand_by_player[0:5])
-        del stand_by_player[0:5]
+    # if len(stand_by_player) >= 5:
+    #     join_room(stand_by_player[0:5])
+    #     del stand_by_player[0:5]
     return None
 
 
