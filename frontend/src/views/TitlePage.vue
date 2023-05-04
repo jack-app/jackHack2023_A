@@ -25,7 +25,8 @@
                     <v-btn
                     height="100px"
                     block color="#C08A9B"
-                    size="large">
+                    size="large"
+                    v-on:click="start">
                         <div class="buttonGS-title">GAME START</div>
                     </v-btn>
                 </v-col>
@@ -39,7 +40,7 @@
 
 
 <script>
-
+import io from "socket.io-client";
 export default {
 name: 'TitlePage',
 
@@ -47,9 +48,19 @@ components: {
     
 },
 
-data: () => ({
-    
-}),
+data(){
+  return{
+    socket: io("localhost:3000/api/"),
+  }
+},
+methods: {
+  start: function () {
+      // this.messageをバックエンドに送信する
+      const player_id = "hoge"
+      this.socket.emit("start",player_id);
+      this.$router.push({ path: '/standby', query: { tag: "title" }});
+  },
+}
 };
 </script>
   

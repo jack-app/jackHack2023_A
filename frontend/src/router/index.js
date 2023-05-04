@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router'
-import AboutPage from '../views/About.vue'
 import InputWordPage from '../views/InputWordPage.vue'
 import ResultPage from '../views/ResultPage.vue'
 import StandByPage from '../views/StandByPage.vue'
