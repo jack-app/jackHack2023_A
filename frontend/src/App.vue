@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app id = "app">
     <HeaderItem/>
     <v-main>
       <router-view />
@@ -22,3 +22,14 @@ export default {
   }),
 };
 </script>
+<style>
+
+template{margin:0px;}
+@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
+#app {
+  font-family: 'Yomogi', cursive;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+</style>

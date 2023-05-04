@@ -1,7 +1,8 @@
 <template>
-    <dev>
-        文章
-    </dev>
+    <div>
+        おはよう
+        こんにちは
+    </div>
 </template>
   
 <script>

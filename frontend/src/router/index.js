@@ -24,6 +24,10 @@ export default new Router({
             path:'/inputword',      // URL 
             name: "inputword",
             component: InputWordPage,
+            meta:{
+                title:'PICK UP WORD',
+                hoge:'ほげほげ',
+              },
              // 上記URLのときに表示するコンポーネント
         },
         {
