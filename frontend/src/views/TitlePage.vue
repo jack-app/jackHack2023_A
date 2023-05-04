@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-card
-        style="border-width: 10px;border-color:#C08A9B"
+        style="border-width: 5px;border-color:#C08A9B;margin:20px 0px 0px 0px "
         class="mx-auto"
         width="80%"
         height="auto"
@@ -19,6 +19,13 @@
                 </div>
             </v-card-item>
         </v-card>
+        <div class="alignment">
+        <input v-model="message" 
+        outlined
+         style="#C08A9B;width: 500px;height:60px;margin:25px 0px 0px 300px;
+        border: 3px solid #C08A9B;  /* 枠線 */ border-radius: 10em;   /* 角丸 */"
+        placeholder="名前を入力してね"
+        >
         <v-container class="text-center">
             <v-row justify="center">
                 <v-col cols="12" sm="6" md="4">
@@ -31,8 +38,7 @@
                 </v-col>
             </v-row>
         </v-container>
-        <input v-model="message" placeholder="edit me">
-<p>Message is: {{ message }}</p>
+        </div>
     </div>
 </template>
 
@@ -57,11 +63,11 @@ data: () => ({
 
 .ruletellerM-title{
     color:#C08A9B;
-    font-size:35px;
+    font-size:30px;
 }
 .text-center{
     position:relative;
-    left:26%;
+    left:0px;
     top:3%;
 }
 .buttonGS-title{
@@ -79,4 +85,18 @@ data: () => ({
   flex-direction: column;
   justify-content: space-around;
 }
+.alignment{
+    display: inline-flex;
+  flex-direction: row;
+  /* justify-content: space-around;   */
+}
+
+.arrow-title {
+    position:relative;
+    height:5px; /* 胴の幅 */
+    width:600px; /* 胴の長さ */
+    background-color:#697b91;
+}
+ 
+
 </style>
