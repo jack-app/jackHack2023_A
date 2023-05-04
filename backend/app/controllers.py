@@ -12,36 +12,12 @@ from starlette.requests import Request
 from starlette.templating import Jinja2Templates
 from starlette.websockets import WebSocket
 
-# class MyCustomNamespace(socketio.AsyncNamespace):  # 名前空間を設定するクラス
-
-#     def on_connect(self, sid, environ):
-#         print('[{}] connet sid : {}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), sid))
-#         print('[{}] connet env : {}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), environ))
-
-#     def on_sid_message(self, sid, msg):  # 送信してきたクライアントだけにメッセージを送る関数
-#         self.emit('response', msg, room=sid)
-#         print('[{}] emit sid : {}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), msg))
-
-#     def on_skip_sid_message(self, sid, msg):  # 送信してきたクライアントを除く全ての接続しているクライアントにメッセージを送信する関数
-#         self.emit('response', msg, skip_sid=sid)
-#         print('[{}] emit skip sid : {}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), msg))
-
-#     def on_broadcast_message(self, sid, msg):  # 接続しているすべてのクライアントにメッセージを送る関数
-#         self.emit('response', msg)
-#         print('[{}] emit all : {}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), msg))
-
-#     def on_disconnect(self, sid):
-#         print('[{}] disconnect'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
-
-
 # setup fastapi
 app_fastapi = FastAPI()
-# sio = socketio.Server(cors_allowed_origins='*')
-sio = socketio.AsyncServer(async_mode='asgi', cors_allowed_origins='*')
+sio = socketio.Server(cors_allowed_origins='*')
+# sio = socketio.AsyncServer(async_mode='asgi', cors_allowed_origins='*')
 # sio.register_namespace(MyCustomNamespace('/socket.io'))  # 名前空間を設定
-app_socketio = socketio.ASGIApp(sio, other_asgi_app=app_fastapi)  # wsgiサーバーミドルウェア生成
-# app_socketio = socketio.WSGIApp(sio)  # wsgiサーバーミドルウェア生成
-# eventlet.wsgi.server(eventlet.listen(('localhost', 3000)), app_socketio)  # wsgiサーバー起動
+# app_socketio = socketio.ASGIApp(sio, other_asgi_app=app_fastapi)  # wsgiサーバーミドルウェア生成
 
 
 origins = [
@@ -56,65 +32,65 @@ app_fastapi.add_middleware(
     allow_headers=["*"],
 )
 
-views = Jinja2Templates(directory="views")
-jinja_env = views.env  # Jinja2.Environment : filterやglobalの設定用
+# views = Jinja2Templates(directory="views")
+# jinja_env = views.env  # Jinja2.Environment : filterやglobalの設定用
 
 
-@app_fastapi.get("/")
-async def index(request: Request):
-    return views.TemplateResponse('sample.html', {'request': request})
+# @app_fastapi.get("/")
+# async def index(request: Request):
+#     return views.TemplateResponse('sample.html', {'request': request})
 
 
-@app_fastapi.get("/matchwaiting")
-async def match_wating(request: Request):
-    return views.TemplateResponse('sample.html')
+# @app_fastapi.get("/matchwaiting")
+# async def match_wating(request: Request):
+#     return views.TemplateResponse('sample.html')
 
 
-@app_fastapi.post("/api/input_word")
-async def input_word(request: Request):
+# @app_fastapi.post("/api/input_word")
+# async def input_word(request: Request):
 
-    return None
+#     return None
 
 
-@app_fastapi.get("/ping/{sid}")
-async def ping(sid: str):
-    """指定されたsidにemitするエンドポイント
-    """
-    sio.start_background_task(
-        sio.emit,
-        "ping", {"message": "ping from server"}, room=sid)
-    return {"result": "OK"}
+# @app_fastapi.get("/ping/{sid}")
+# async def ping(sid: str):
+#     """指定されたsidにemitするエンドポイント
+#     """
+#     sio.start_background_task(
+#         sio.emit,
+#         "ping", {"message": "ping from server"}, room=sid)
+#     return {"result": "OK"}
 
 
 stand_by_player = []
 
 
-@sio.event
-async def start(sid):
-    print("hoge")
-    # stand_by_player.append([player_id, sid])
-    # print("現在の待機プレイヤー：" + len(stand_by_player) + "名")
+@sio.on("start")
+async def start(sid, player_id):
+    print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    stand_by_player.append([player_id, sid])
+    print("現在の待機プレイヤー：" + len(stand_by_player) + "名")
 
-    # def join_room(players):
-    #     # 長さ10のランダムなアルファベットと数字の組み合わせを生成する
-    #     room_id = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
-    #     print(room_id)
-    #     for player in players:
-    #         sio.enter_room(sid=player[1], room=room_id)
+    def join_room(players):
+        # 長さ10のランダムなアルファベットと数字の組み合わせを生成する
+        room_id = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+        print(room_id)
+        for player in players:
+            sio.enter_room(sid=player[1], room=room_id)
 
-    #     sio.emit("room-full", room=room_id)
+        sio.emit("room-full", room=room_id)
 
-    # if len(stand_by_player) >= 5:
-    #     join_room(stand_by_player[0:5])
-    #     del stand_by_player[0:5]
+    if len(stand_by_player) >= 5:
+        join_room(stand_by_player[0:5])
+        del stand_by_player[0:5]
     return None
 
 
 @sio.event
-async def connect(sid, environ):
+async def connect(sid):
     """socketioのconnectイベント
     """
-    print('connect ', sid)
+    print('connect bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', sid)
 
     # standByPlayer = []
 
@@ -163,8 +139,13 @@ async def connect(sid, environ):
     #         print("今のroomにいる人数"+num_clients[room_id])
 
 
-@sio.event
+@ sio.event
 async def disconnect(sid):
     """socketioのdisconnectイベント
     """
     print('disconnect ', sid)
+
+
+if __name__ == '__main__':
+    app_socketio = socketio.WSGIApp(sio)  # wsgiサーバーミドルウェア生成
+    eventlet.wsgi.server(eventlet.listen(('localhost', 3000)), app_socketio)  # wsgiサーバー起動
