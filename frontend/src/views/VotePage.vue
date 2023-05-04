@@ -1,30 +1,173 @@
 <template>
-    <div class="vote-all">
-        <div class="wrapper">
-         
-          <div class="oneone"><img class="hidari" src="../assets/hidariok.jpg" alt=""></div>
-          <div class="onetwo">aiueokaki</div>
-          <div class="onethree"><img class="migi" src="../assets/migiiii.jpg" alt=""></div>
-          <div class="onefour"><button type="button" name="name" value="value">vote</button></div>
 
-          <div class="oneone"><img class="hidari" src="../assets/hidariok.jpg" alt=""></div>
-          <div class="onetwo"></div>
-          <div class="onethree"><img class="migi" src="../assets/migiiii.jpg" alt=""></div>
-          <div class="onefour"><button type="button" name="name" value="value">vote</button></div>
+  <div class="wrapper">
 
-          <div class="oneone"><img class="hidari" src="../assets/hidariok.jpg" alt=""></div>
-          <div class="onetwo"></div>
-          <div class="onethree"><img class="migi" src="../assets/migiiii.jpg" alt=""></div>
-          <div class="onefour"><button type="button" name="name" value="value">vote</button></div>
+     <div class="oneone"><img class="hidari" src="../assets/hidari.jpg" alt=""></div>
+     <div class="onetwo">
+        Player 1
+      <div class="text-center">
+        <v-dialog
+            v-model="dialog"
+             width="auto"
+            >
+            <template v-slot:activator="{ props }">
+                <v-btn
+                 color="primary"
+                 v-bind="props"
+                 >
+                    Open Text
+                </v-btn>
+            </template>
 
-          <div class="oneone"><img class="hidari" src="../assets/hidariok.jpg" alt=""></div>
-          <div class="onetwo"></div>
-          <div class="onethree"><img class="migi" src="../assets/migiiii.jpg" alt=""></div>
-          <div class="onefour"><button type="button" name="name" value="value">vote</button></div>
-          
-       </div>
- </div>
-   
+            <v-card>
+                <v-card-text>
+                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </v-card-text>
+                <v-card-actions>
+                    <v-btn color="primary" block @click="dialog = false">Close Text</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+      </div>
+     </div>     
+     <div class="onethree"><img class="migi" src="../assets/migi.jpg" alt=""></div>
+     <div class="onefour"> <v-btn size="x-large" color="primary"> ---- vote---- </v-btn></div>
+
+
+
+
+     <div class="oneone"><img class="hidari" src="../assets/hidari.jpg" alt=""></div>
+     <div class="onetwo">
+        Player 2
+      <div class="text-center">
+        <v-dialog
+            v-model="dialog"
+             width="auto"
+            >
+            <template v-slot:activator="{ props }">
+                <v-btn
+                 color="primary"
+                 v-bind="props"
+                 >
+                    Open Text
+                </v-btn>
+            </template>
+
+            <v-card>
+                <v-card-text>
+                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </v-card-text>
+                <v-card-actions>
+                    <v-btn color="primary" block @click="dialog = false">Close Text</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+      </div>
+     </div>     
+     <div class="onethree"><img class="migi" src="../assets/migi.jpg" alt=""></div>
+     <div class="onefour"> <v-btn size="x-large" color="primary"> ---- vote---- </v-btn></div>
+
+
+     <div class="oneone"><img class="hidari" src="../assets/hidari.jpg" alt=""></div>
+     <div class="onetwo">
+        Player 3
+      <div class="text-center">
+        <v-dialog
+            v-model="dialog"
+             width="auto"
+            >
+            <template v-slot:activator="{ props }">
+                <v-btn
+                 color="primary"
+                 v-bind="props"
+                 >
+                    Open Text
+                </v-btn>
+            </template>
+
+            <v-card>
+                <v-card-text>
+                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </v-card-text>
+                <v-card-actions>
+                    <v-btn color="primary" block @click="dialog = false">Close Text</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+      </div>
+     </div>     
+     <div class="onethree"><img class="migi" src="../assets/migi.jpg" alt=""></div>
+     <div class="onefour"> <v-btn size="x-large" color="primary"> ---- vote---- </v-btn></div>
+
+
+     <div class="oneone"><img class="hidari" src="../assets/hidari.jpg" alt=""></div>
+     <div class="onetwo">
+        Player 4
+      <div class="text-center">
+        <v-dialog
+            v-model="dialog"
+             width="auto"
+            >
+            <template v-slot:activator="{ props }">
+                <v-btn
+                 color="primary"
+                 v-bind="props"
+                 >
+                    Open Text
+                </v-btn>
+            </template>
+
+            <v-card>
+                <v-card-text>
+                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </v-card-text>
+                <v-card-actions>
+                    <v-btn color="primary" block @click="dialog = false">Close Text</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+      </div>
+     </div>     
+     <div class="onethree"><img class="migi" src="../assets/migi.jpg" alt=""></div>
+     <div class="onefour"> <v-btn size="x-large" color="primary"> ---- vote---- </v-btn></div>
+
+
+     <div class="oneone"><img class="hidari" src="../assets/hidari.jpg" alt=""></div>
+     <div class="onetwo">
+        Player 5
+      <div class="text-center">
+        <v-dialog
+            v-model="dialog"
+             width="auto"
+            >
+            <template v-slot:activator="{ props }">
+                <v-btn
+                 color="primary"
+                 v-bind="props"
+                 >
+                    Open Text
+                </v-btn>
+            </template>
+
+            <v-card>
+                <v-card-text>
+                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </v-card-text>
+                <v-card-actions>
+                    <v-btn color="primary" block @click="dialog = false">Close Text</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+      </div>
+     </div>     
+     <div class="onethree"><img class="migi" src="../assets/migi.jpg" alt=""></div>
+     <div class="onefour"> <v-btn size="x-large" color="primary"> ---- vote---- </v-btn></div>
+
+
+    
+
+
+   </div>
 </template>
   
 
@@ -48,30 +191,26 @@ data: () => ({
 
 .wrapper {
   table-layout: fixed;
-  margin: 40px;
+  margin: 30px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 200px;
   
    }
-   .onetwo{
+
+.onetwo{
     table-layout: fixed;
-    font-size: 50px;
+    font-size: 30px;
     text-align: center;
-    padding: 40px;
+    padding: 30px;
 
 }
 
 
 .onefour{
-    margin: 30px;
-    padding: 10px;
+    margin-top: 50px;
+    padding: 30px;
     text-align: center;
-    font-size: 70px;
-    color: #FFFFFF;
-    border-bottom: 1px solid;
-    background-color: #C08A9B;
-
     
 }
 
@@ -84,4 +223,5 @@ data: () => ({
     width:300px;
     height:170px; 
 }
+
 </style>
