@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router'
-import AboutPage from '../views/About.vue'
 import InputWordPage from '../views/InputWordPage.vue'
 import ResultPage from '../views/ResultPage.vue'
 import StandByPage from '../views/StandByPage.vue'
@@ -16,8 +15,11 @@ const router = new Router({
     routes:[
         {
             path:'/',      // URL 
-            name: "home",
-            component: AboutPage,
+            name: "title", //
+            component: TitlePage,
+            meta:{
+                title:'タイトル',
+            },
              // 上記URLのときに表示するコンポーネント
         },
         {
@@ -53,15 +55,6 @@ const router = new Router({
             component: SubmitTextPage,
             meta:{
                 title:'MAKE A TEXT',
-            },
-             // 上記URLのときに表示するコンポーネント
-        },
-        {
-            path:'/title',      // URL 
-            name: "title", //
-            component: TitlePage,
-            meta:{
-                title:'タイトル',
             },
              // 上記URLのときに表示するコンポーネント
         },

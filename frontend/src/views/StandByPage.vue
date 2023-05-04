@@ -12,6 +12,7 @@
 
 <script>
 import io from "socket.io-client";
+
 export default {
   name: 'StandByPage',
 
@@ -21,7 +22,7 @@ export default {
 
   data () {
     return{
-      socket: io("localhost:3000/api/"),
+      socket: io("localhost:3000/"),
       message: ""
     }
   },
@@ -36,25 +37,30 @@ export default {
     console.log(this.$route.query.tag)
   },
   mounted(){
-    this.socket.on("room_full", function (room_id) {
-      localStorage.setItem('room_id', room_id)
+    const in_socket_this = this;
+    this.socket.on("room_full", function (room_id, player_name_list) {
+      console.log("room_full")
+      localStorage.setItem('room_id', room_id);
+      let player_name_list_json = JSON.stringify(player_name_list, undefined, 1);
+      localStorage.setItem('name_list', player_name_list_json);
+      in_socket_this.socket.emit("login", room_id);
       console.log("人数がいっぱいになったので、ゲームを開始します");
-      this.$router.push({ path: '/inputword' })
+      in_socket_this.$router.push({ path: '/inputword' })
     });
 
     this.socket.on("done_submit_word", function () {
       console.log("全員の単語入力が完了しました");
-      this.$router.push({ path: '/submittext' })
+      in_socket_this.$router.push({ path: '/submittext' })
     });
 
     this.socket.on("done_submit_text", function () {
       console.log("全員の文章入力が完了しました");
-      this.$router.push({ path: '/vote' })
+      in_socket_this.$router.push({ path: '/vote' })
     });
 
     this.socket.on("done_vote", function () {
       console.log("全員の投票が完了しました");
-      this.$router.push({ path: '/result' })
+      in_socket_this.$router.push({ path: '/result' })
     });
   }
 };

@@ -1,3 +1,4 @@
+
 # Created by https://www.toptal.com/developers/gitignore/api/venv
 # Edit at https://www.toptal.com/developers/gitignore?templates=venv
 
@@ -20,7 +21,9 @@ pip-selfcheck.json
 
 __pycache__/
 
+
 test_client.py
 sample_server.py
 sample_server.js
 sample_client.py
+
