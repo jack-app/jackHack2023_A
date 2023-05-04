@@ -40,7 +40,7 @@
 
 
 <script>
-import io from "socket.io-client";
+// import io from "socket.io-client";
 export default {
 name: 'TitlePage',
 
@@ -50,14 +50,15 @@ components: {
 
 data(){
   return{
-    socket: io("localhost:3000/api/"),
+    socket: io("localhost:3000/"),
+
   }
 },
 methods: {
   start: function () {
       // this.messageをバックエンドに送信する
-      const player_id = "hoge"
-      this.socket.emit("start",player_id);
+      const player_name = "hoge"
+      this.socket.emit("start",player_name);
       this.$router.push({ path: '/standby', query: { tag: "title" }});
   },
 }
