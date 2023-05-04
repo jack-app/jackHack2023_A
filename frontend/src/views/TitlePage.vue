@@ -50,15 +50,15 @@ components: {
 
 data(){
   return{
-    // socket: io("localhost:3000/api/"),
+    socket: io("localhost:3000/"),
+
   }
 },
 methods: {
   start: function () {
       // this.messageをバックエンドに送信する
-      const player_id = "hoge"
-      axios.post("http://localhost:8000/api/start",{player_id: player_id})
-      .then()
+      const player_name = "hoge"
+      this.socket.emit("start",player_name);
       this.$router.push({ path: '/standby', query: { tag: "title" }});
   },
 }
