@@ -16,8 +16,11 @@ const router = new Router({
     routes:[
         {
             path:'/',      // URL 
-            name: "home",
-            component: AboutPage,
+            name: "title", //
+            component: TitlePage,
+            meta:{
+                title:'タイトル',
+            },
              // 上記URLのときに表示するコンポーネント
         },
         {
@@ -53,15 +56,6 @@ const router = new Router({
             component: SubmitTextPage,
             meta:{
                 title:'MAKE A TEXT',
-            },
-             // 上記URLのときに表示するコンポーネント
-        },
-        {
-            path:'/title',      // URL 
-            name: "title", //
-            component: TitlePage,
-            meta:{
-                title:'タイトル',
             },
              // 上記URLのときに表示するコンポーネント
         },
