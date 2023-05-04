@@ -41,7 +41,7 @@ sio = socketio.AsyncServer(async_mode='asgi', cors_allowed_origins='*')
 # sio.register_namespace(MyCustomNamespace('/socket.io'))  # 名前空間を設定
 app_socketio = socketio.ASGIApp(sio, other_asgi_app=app_fastapi)  # wsgiサーバーミドルウェア生成
 # app_socketio = socketio.WSGIApp(sio)  # wsgiサーバーミドルウェア生成
-# eventlet.wsgi.server(eventlet.listen(('localhost', 3000)), app_socketio)  # wsgiサーバー起動
+eventlet.wsgi.server(eventlet.listen(('localhost', 3000)), app_socketio)  # wsgiサーバー起動
 
 
 origins = [

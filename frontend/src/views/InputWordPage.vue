@@ -21,6 +21,7 @@
   
 <script>
 import io from "socket.io-client";
+import axios from "axios";
 export default {
     
     name: 'InputWordPage',
@@ -29,20 +30,28 @@ export default {
     },
     data() {
         return{
-            socket: io("localhost:3000/api/"),
+            socket: io("localhost:3000/"),
             theme: "",
             message: ""
         }
     },
     created(){
+        const room_id = localStorage.getItem('room_id');
+        this.socket.emit("room_join", room_id);
         this.theme = "花"
     },
     methods: {
       submitTheme: function () {
         const word = this.message;
         const room_id = localStorage.getItem('room_id');
-        this.socket.emit("input_word",word, room_id);
-        this.$router.push({ path: '/standby', query: { tag: "inputword" }});
+        axios.post("http://localhost:3000/input_word",
+        {
+            room_id: room_id,
+            word: word
+        })
+        .then(()=>{
+            this.$router.push({ path: '/standby', query: { tag: "inputword" }});
+        })
       },
         
     },
