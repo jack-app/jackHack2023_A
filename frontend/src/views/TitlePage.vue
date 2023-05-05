@@ -22,7 +22,7 @@
         <div class="alignment">
         <input v-model="message" 
         outlined
-         style="#C08A9B;width: 500px;height:60px;margin:25px 0px 0px 300px;
+         style="#C08A9B;width: 500px;height:60px;margin:40px 0px 0px 300px;
         border: 3px solid #C08A9B;  /* 枠線 */ border-radius: 10em;   /* 角丸 */"
         placeholder="名前を入力してね"
         >
@@ -91,12 +91,7 @@ data: () => ({
   /* justify-content: space-around;   */
 }
 
-.arrow-title {
-    position:relative;
-    height:5px; /* 胴の幅 */
-    width:600px; /* 胴の長さ */
-    background-color:#697b91;
-}
+
  
 
 </style>
