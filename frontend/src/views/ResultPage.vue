@@ -1,12 +1,24 @@
 <template>
+
     <div>
-        <p class = "result">
-            結果発表～～
-        </p>
-        <p class = "result-2">
-            成功です！！！
-        </p>
+
+            <div class="firsttext">
+                aaa
+            </div>
+        <div class="under">
+            <div class="allresult">
+                bbb
+            </div>
+
+            <div class="myresult">
+                ccc
+            </div>
+        </div>
     </div>
+
+    
+
+    
 </template>
   
 <script>
@@ -25,13 +37,35 @@ data: () => ({
 </script>
 
 <style>
-.result{
-    margin-top: 30px;
-    font-size: 100px;
+
+.firsttext{
+    border:1px solid #000;
+    margin:50px;
+    width:1150px;
+    height:200px;
+
 }
-.result-2{
-    font-size: 30px;
-    color: blue;
+
+.under{
+    display :flex;
+}
+
+.allresult{
+    border:1px solid #000;
+   
+    margin-left :70px;
+    width: 700px;
+    height:150px; 
+   
+}
+
+.myresult{
     
+    border:1px solid #000;
+    margin-left :30px;
+    width:300px;
+    height:150px;
+
 }
+
 </style>
