@@ -1,6 +1,6 @@
 <template>
   <v-app id = "app">
-    <HeaderItem/>
+    <HeaderItem :title = title></HeaderItem>
     <v-main>
       <router-view />
     </v-main>
@@ -16,11 +16,35 @@ export default {
   components: {
     HeaderItem,
   },
-
-  data: () => ({
-    //
-  }),
-};
+  data(){
+    return{
+      title: ""
+    }
+  },
+  methods: {
+    createTitleDesc : function(routeInstance){
+        //titleを設定する処理
+        if(routeInstance.meta.title){
+            var setTitle = routeInstance.meta.title;
+            document.title = setTitle;
+            this.title = document.title;
+        } else {
+            document.title = 'ルートでtitleがセットされていない場合に表示するテキスト'
+        }
+      }
+  },
+  mounted : function(){
+      var routeInstance = this.$route;
+      this.createTitleDesc(routeInstance);
+  },
+  watch: { 
+      '$route' (routeInstance, from) {
+        console.log(from)
+        this.createTitleDesc(routeInstance);
+      }
+  },
+  
+}
 </script>
 <style>
 
