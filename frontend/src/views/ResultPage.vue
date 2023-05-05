@@ -2,6 +2,7 @@
 
     <div>
 
+
             <div class="firsttext">
                 <img class="hidari-resu" src="../assets/hidari.jpg" alt=""> 
                 <p class="result-text">sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
@@ -17,7 +18,6 @@
                 ccc
             </div>
         </div>
-
     </div>
 
     
@@ -29,6 +29,7 @@
 import axios from "axios";
 export default {
     name: 'ResultPage',
+
     data() {
         return{
             winner : ""
@@ -48,7 +49,7 @@ export default {
         })
     },
 
-    
+
 };
 </script>
 
