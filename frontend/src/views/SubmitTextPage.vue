@@ -50,28 +50,22 @@ export default {
     },
     data() {
         return{
-            socket: io("localhost:3000/api/"),
+            socket: io("localhost:3000/"),
+            message: "",
             items: [],
         }
     },
     created(){
         const room_id = localStorage.getItem('room_id');
-        axios.post("http://localhost:3000/api/get_word_list",{room_id: room_id})
+        axios.post("http://localhost:3000/get_word_list",{room_id: room_id})
         .then((res) => {
-            this.items = res.data.items.map((test)=>{
+            const word_list = res.data
+            word_list.map((test)=>{
                 // 第一引数に配列の値が入ってくる
-                return test;
+                let word_tmp = {}
+                word_tmp.title = test["word"]
+                this.items.push(word_tmp)
             });
-            this.items = [
-            {
-                title: 'Item #1',
-                value: 1,
-            },
-            {
-                title: 'Item #2',
-                value: 2,
-            }
-        ]
         })
         
     },
@@ -80,8 +74,15 @@ export default {
             // this.messageをバックエンドに送信する
             const text = this.message;
             const room_id = localStorage.getItem('room_id');
-            this.socket.emit("submit_text",text, room_id);
-            this.$router.push({ path: '/standby', query: { tag: "submittext" }});
+            axios.post("http://localhost:3000/submit_text",
+            {
+                room_id: room_id,
+                text: text
+            })
+            .then(()=>{
+                this.$router.push({ path: '/standby', query: { tag: "submittext" }});
+            })
+            
         },
     }
 };
