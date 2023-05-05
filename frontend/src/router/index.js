@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router'
-import AboutPage from '../views/About.vue'
 import InputWordPage from '../views/InputWordPage.vue'
 import ResultPage from '../views/ResultPage.vue'
 import StandByPage from '../views/StandByPage.vue'
@@ -11,13 +10,16 @@ import VotePage from '../views/VotePage.vue'
 
 Vue.use(Router) // プラグイン（どこでも使える機能）を適用するために記載
 
-export default new Router({
+const router = new Router({
     mode: 'history',
     routes:[
         {
             path:'/',      // URL 
-            name: "home",
-            component: AboutPage,
+            name: "title", //
+            component: TitlePage,
+            meta:{
+                title:'タイトル',
+            },
              // 上記URLのときに表示するコンポーネント
         },
         {
@@ -26,39 +28,52 @@ export default new Router({
             component: InputWordPage,
             meta:{
                 title:'PICK UP WORD',
-                hoge:'ほげほげ',
-              },
+            },
              // 上記URLのときに表示するコンポーネント
         },
         {
             path:'/result',      // URL 
             name: "result",
             component: ResultPage,
+            meta:{
+                title:'RESULT',
+            },
              // 上記URLのときに表示するコンポーネント
         },
         {
             path:'/standby',      // URL 
             name: "standby", //
             component: StandByPage,
+            meta:{
+                title:'',
+            },
              // 上記URLのときに表示するコンポーネント
         },
         {
             path:'/submittext',      // URL 
             name: "submittext", //
             component: SubmitTextPage,
-             // 上記URLのときに表示するコンポーネント
-        },
-        {
-            path:'/title',      // URL 
-            name: "title", //
-            component: TitlePage,
+            meta:{
+                title:'MAKE A TEXT',
+            },
              // 上記URLのときに表示するコンポーネント
         },
         {
             path:'/vote',      // URL 
             name: "vote", //
             component: VotePage,
+            meta:{
+                title:'VOTE THE BEST',
+            },
              // 上記URLのときに表示するコンポーネント
         },
     ]
+})
+
+export default router;
+router.afterEach((to,from) =>{
+    console.log(from)
+    if (to.meta && to.meta.title) {
+        document.title = to.meta.title
+    }
 })

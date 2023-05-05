@@ -21,77 +21,82 @@
         </v-card>
         <div class="alignment">
         <input v-model="message" 
+
         outlined
-         style="#C08A9B;width: 500px;height:60px;margin:40px 0px 0px 300px;
+        style="#C08A9B;width: 500px;height:60px;margin:40px 0px 0px 300px;
         border: 3px solid #C08A9B;  /* 枠線 */ border-radius: 10em;   /* 角丸 */"
         placeholder="名前を入力してね"
-        >
-        <v-container class="text-center">
-            <v-row justify="center">
-                <v-col cols="12" sm="6" md="4">
-                    <v-btn
-                    height="100px"
-                    block color="#C08A9B"
-                    size="large">
-                        <div class="buttonGS-title">GAME START</div>
-                    </v-btn>
-                </v-col>
-            </v-row>
-        </v-container>
-        </div>
+      />
+      <v-container class="text-center">
+        <v-row justify="center">
+          <v-col cols="12" sm="6" md="4">
+            <v-btn
+              height="100px"
+              block
+              color="#C08A9B"
+              size="large"
+              v-on:click="start"
+            >
+              <div class="buttonGS-title">GAME START</div>
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-container>
     </div>
+  </div>
 </template>
 
-
-
 <script>
-
+import io from "socket.io-client";
 export default {
-name: 'TitlePage',
+  name: "TitlePage",
 
-components: {
-    
-},
+  components: {},
 
-data: () => ({
-    
-}),
+  data() {
+    return {
+      socket: io("localhost:3000/"),
+    };
+  },
+  methods: {
+    start: function () {
+      // this.messageをバックエンドに送信する
+      const player_name = this.message;
+      this.socket.emit("start", player_name);
+      this.$router.push({ path: "/standby", query: { tag: "title" } });
+    },
+  },
 };
 </script>
-  
+
 <style>
+.ruletellerM-title {
+  color: #c08a9b;
+  font-size: 30px;
+}
+.text-center {
+  position: relative;
+  left: 0px;
+  top: 3%;
+}
+.buttonGS-title {
+  font-size: 70px;
 
-.ruletellerM-title{
-    color:#C08A9B;
-    font-size:30px;
+  color: white;
 }
-.text-center{
-    position:relative;
-    left:0px;
-    top:3%;
+.ruletellerT-title {
+  color: #c08a9b;
+  font-size: 50px;
+  margin: 15px;
 }
-.buttonGS-title{
-    font-size: 70px;
-
-    color:white;
-}
-.ruletellerT-title{
-    color:#C08A9B;
-    font-size:50px;
-    margin:15px;
-}
-.div-equal-box-title{
+.div-equal-box-title {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-.alignment{
-    display: inline-flex;
+.alignment {
+  display: inline-flex;
   flex-direction: row;
   /* justify-content: space-around;   */
 }
-
-
- 
-
 </style>

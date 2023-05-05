@@ -41,7 +41,8 @@
 </template>
   
 <script>
-
+import axios from "axios";
+import io from "socket.io-client";
 export default {
     name: 'SubmitTextPage',
     components: {
@@ -49,25 +50,39 @@ export default {
     },
     data() {
         return{
+            socket: io("localhost:3000/"),
+            message: "",
             items: [],
         }
     },
     created(){
-        this.items = [
-            {
-                title: 'Item #1',
-                value: 1,
-            },
-            {
-                title: 'Item #2',
-                value: 2,
-            }
-        ]
+        const room_id = localStorage.getItem('room_id');
+        axios.post("http://localhost:3000/get_word_list",{room_id: room_id})
+        .then((res) => {
+            const word_list = res.data
+            word_list.map((test)=>{
+                // 第一引数に配列の値が入ってくる
+                let word_tmp = {}
+                word_tmp.title = test["word"]
+                this.items.push(word_tmp)
+            });
+        })
+        
     },
     methods: {
         submitText: function () {
             // this.messageをバックエンドに送信する
-            console.log(this.message)
+            const text = this.message;
+            const room_id = localStorage.getItem('room_id');
+            axios.post("http://localhost:3000/submit_text",
+            {
+                room_id: room_id,
+                text: text
+            })
+            .then(()=>{
+                this.$router.push({ path: '/standby', query: { tag: "submittext" }});
+            })
+            
         },
     }
 };
