@@ -3,7 +3,10 @@
     <div>
 
             <div class="firsttext">
-                aaa
+                <img class="hidari-resu" src="../assets/hidari.jpg" alt=""> 
+                <p class="result-text">sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+                <img class="migi-resu" src="../assets/migi.jpg" alt="">
+                
             </div>
         <div class="under">
             <div class="allresult">
@@ -39,11 +42,34 @@ data: () => ({
 <style>
 
 .firsttext{
-    border:1px solid #000;
+
+    display: flex;
     margin:50px;
     width:1150px;
     height:200px;
 
+}
+
+.hidari-resu{
+    width:250px;
+    height:150px;
+    z-index: 1;
+    position:fixed;
+}
+
+.result-text{
+    padding:50px;
+    z-index: 2;
+    Word-break:break-all;
+}
+
+.migi-resu{
+    width:250px;
+    height:150px;
+    margin-top:30px;
+    margin-left: 900px;
+    z-index: 1;
+    position:fixed;
 }
 
 .under{
