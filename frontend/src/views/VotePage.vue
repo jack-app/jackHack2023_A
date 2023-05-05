@@ -172,6 +172,7 @@
   </div>
 </template>
 
+
 <script>
 import axios from "axios";
 export default {
@@ -311,13 +312,16 @@ export default {
 };
 </script>
 
+
 <style>
+
 .wrapper {
   table-layout: fixed;
   margin: 30px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 200px;
+
 }
 
 .onetwo {
@@ -343,3 +347,4 @@ export default {
   height: 170px;
 }
 </style>
+
