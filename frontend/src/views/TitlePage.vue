@@ -12,10 +12,10 @@
                     <p class="ruletellerT-title">--ルール説明--</p>
                 </div>
                 <div class="div-equal-box-title">
-                    <p class="ruletellerM-title">みんなが出した単語を使ってロマンチックな文章を作ろう！</p>
+                    <p class="ruletellerM-title">みんなが出した単語を使って告白文を考えよう！</p>
                     <p class="ruletellerM-title">1. お題に合わせて好きな単語を打ち込んでください！</p>
-                    <p class="ruletellerM-title">2. ５人それぞれが選んだ単語を使ってロマンチックな文章を作りましょう！</p>
-                    <p class="ruletellerM-title">3. 一番ロマンチックな文章を書いた人に投票しよう！</p>
+                    <p class="ruletellerM-title">2. ５人それぞれが選んだ単語を使って口説き文句を作りましょう！</p>
+                    <p class="ruletellerM-title">3. 一番魅力的な書いた人に投票しよう！</p>
                 </div>
             </v-card-item>
         </v-card>
