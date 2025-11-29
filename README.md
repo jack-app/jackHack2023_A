@@ -1,1 +1,2 @@
-# jackHack2023_B
+# Free AI at api.airforce
+https://discord.gg/AJDsM7jtbq
